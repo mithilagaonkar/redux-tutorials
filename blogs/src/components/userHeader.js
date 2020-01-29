@@ -21,9 +21,9 @@ return <div className="header">{user.name}</div>
 const mapStateToProps = (state , ownprops) => {
 // We can access the component props by simply saying ownprops ...Its accessible also to the mapStatetoprops .
 //console.log(state);
-   
+   console.log(ownprops);
    // return {users: state.users};
-   return {user : state.users.find(user => user.id === ownprops.userId)};
+   return {user : state.users.userList.find(user => user.id === ownprops.userId)};
 }
 
 export default connect(mapStateToProps)(UserHeader);

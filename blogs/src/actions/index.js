@@ -8,13 +8,23 @@ import JsonPlaceholder from '../apis/jsonPlaceholder';
 
 //Introducing a new action creator that is common for both ..The post as well as the users.The second parameter for an action creator is the getState of the store .
 export const FetchPostsAndUsers = () => async (dispatch,getState) =>{
+    dispatch({type:'POST_AND_USER_LOADING', payload: true})
     await dispatch(FetchPost());
-    
     const ids =_.uniq(_.map(getState().posts,'userId'));
-     ids.forEach(id=>dispatch(FetchUser(id)));
+    ids.forEach(id=>dispatch(FetchUser(id)));
+    dispatch({type:'POST_AND_USER_LOADING', payload: false})
 }
 
-//This type of action creators has an arrow function inside another arrow function .
+export const deletePostsAndUsers = (postId) => async (dispatch,getState) =>{
+    dispatch({type:'POST_AND_USER_DELETING', payload: postId})
+    
+}
+
+export const updatePosts = (posts) => (dispatch,getState)=>{
+    dispatch({type:'UPDATE_POSTS',payload:posts});
+};
+
+//This type of action creators has an arrow function inside another arrow function with dispatch as its args for thunk.
 //So basically , this action creator gives a call to the other two action creators . and than those a ction creators 
 // performs the request and dispatches it . Here we have given await to make sure it waits till the resonse gets returned .
 
