@@ -16,6 +16,7 @@ class SongList extends React.Component {
         });
     }
     render() {
+        debugger;
        // console.log(this.props);
         return <div className="ui divided list">{this.renderList()}</div>;
     }
@@ -24,6 +25,7 @@ class SongList extends React.Component {
 //It is preferred to use mapStatetoProps by convention .Still we can use any other function name.
 //This funct is fed to the connect . It should ideally return somthg . And the returned one than acts as the prop to our parent component .
 const fetchMe = (me) => {
+    debugger;
     //console.log(me.song.title);
     //console.log(me);
     return { songs: me.song };
